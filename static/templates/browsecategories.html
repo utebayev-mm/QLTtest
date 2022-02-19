@@ -16,34 +16,50 @@
 
         <div class="jumbotron">
             <div class="container text-center">
-                <a href="/"> <h1>QLT - Financial Literacy</h1></a>
+                <a href="/">
+                    <h1>QLT - Financial Literacy</h1>
+                </a>
             </div>
         </div>
 
         <div class="container">
-            <h3>Browse categories</h3><br>
+            <h3>Browse categories</h3>
+            <form action="/addacategory">
+                <input type="submit" value="Create a category" />
+            </form>
+            <br>
+            <form action="/deleteacategory">
+                <input type="submit" value="Delete a category by ID" />
+            </form>
+            <br>
             <table class="table">
                 <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Edit</th>
-                  </tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {{range . }}
-                  <tr>
-                    <th>{{.ID}}</th>
-                    <th>{{.Name}}</th>
-                    <th>
-                      <form action="/updatecategory/{{.ID}}">
-                        <input type="submit" value="Update" />
-                    </form>
-                    </th>
-                  </tr>
-            {{end}}
+                    <tr>
+                        <th>{{.ID}}</th>
+                        <th>{{.Name}}</th>
+                        <th>
+                            <form action="/updatecategory/{{.ID}}">
+                                <input type="submit" value="Update" />
+                            </form>
+                        </th>
+                        <th>
+                            <form action="/deletecategory/{{.ID}}">
+                                <input type="submit" value="Delete" />
+                            </form>
+                        </th>
+                    </tr>
+                    {{end}}
                 </tbody>
-              </table>
+            </table>
         </div><br><br>
         <footer class="container-fluid text-center">
             <p><b>Author: utebayev.mm@gmail.com</b></p>
