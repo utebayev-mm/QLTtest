@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>QLT - Financial Literacy</title>
+    <link rel="stylesheet" href="/static/styles/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <body>
+
+        <div class="jumbotron">
+            <div class="container text-center">
+               <a href="/"> <h1>QLT - Financial Literacy</h1></a>
+            </div>
+        </div>
+
+        <div class="container-fluid bg-3 text-center">
+            <h3>Transactions</h3><br>
+            <div class="row">
+                <div class="col">
+                    <p>Add a transaction</p>
+                    <form action="/addatransaction/">
+                        <input type="submit" value="Create" />
+                    </form>
+                </div>
+                <div class="col">
+                    <p>Browse & update transactions</p>
+                    <form action="/browsetransactions">
+                        <input type="submit" value="Read" />
+                    </form>
+                </div>
+                <div class="col">
+                    <p>Delete a payment</p>
+                    <form action="/deleteatransaction/">
+                        <input type="submit" value="Delete" />
+                    </form>
+                </div>
+            </div>
+        </div><br>
+
+        <div class="container-fluid bg-3 text-center">
+            <h3>Categories</h3><br>
+            <div class="row">
+                <div class="col">
+                    <p>Add a payment category</p>
+                    <form action="/addacategory">
+                        <input type="submit" value="Create" />
+                    </form>
+                </div>
+                <div class="col">
+                    <p>Browse & update categories</p>
+                    <form action="/browsecategories">
+                        <input type="submit" value="Read" />
+                    </form>
+                </div>
+                <div class="col">
+                    <p>Delete a category</p>
+                    <form action="/deleteacategory">
+                        <input type="submit" value="Delete" />
+                    </form>
+                </div>
+            </div>
+        </div><br><br>
+
+        <footer class="container-fluid text-center">
+            <p><b>Author: utebayev.mm@gmail.com</b></p>
+            <p><b>+77718860763</b></p>
+        </footer>
+
+    </body>
+</body>
+
+</html>
