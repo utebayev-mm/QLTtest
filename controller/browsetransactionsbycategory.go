@@ -4,28 +4,27 @@ import (
 	"log"
 	"net/http"
 	"qltTestApi/model"
+	"strconv"
 	"text/template"
 )
 
-type TransactionBrowseData struct {
-	Categories   []model.Category
-	Transactions []model.Transaction
-	Info         string
-}
-
-func (t *Transaction) BrowseTransactions(w http.ResponseWriter, r *http.Request) {
-	template, err := template.ParseFiles("./static/templates/browsetransactions.html")
+func (t *Transaction) BrowseTransactionsByCategory(w http.ResponseWriter, r *http.Request) {
+	template, err := template.ParseFiles("./static/templates/browsebycategory.html")
 	if err != nil {
 		log.Println(err)
 	}
 	var Transactions []model.Transaction
-
-	Transactions = t.repo.Browse()
+	CategoryID, err := strconv.Atoi(r.URL.Path[18:])
+	if err != nil {
+		log.Println(err)
+	}
+	Transactions = t.repo.BrowseByCategory(CategoryID)
 	var BrowseData TransactionBrowseData
 	var Categories []model.Category
 	Categories = t.repo.BrowseCategories()
 	BrowseData.Transactions = Transactions
 	BrowseData.Categories = Categories
+	BrowseData.Info = Transactions[0].CategoryName
 	errExec := template.Execute(w, BrowseData)
 	if errExec != nil {
 		log.Println(errExec)

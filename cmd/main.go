@@ -36,6 +36,7 @@ func Router() *mux.Router {
 	r.HandleFunc("/deleteacategory", category.DeleteCategoryByID).Methods("GET", "POST")
 	r.HandleFunc("/updatetransaction/{id:[0-9]+}", transaction.UpdateTransaction).Methods("GET", "POST")
 	r.HandleFunc("/deletetransaction/{id:[0-9]+}", transaction.DeleteTransaction).Methods("GET", "POST")
+	r.HandleFunc("/browsebycategory/{id:[0-9]+}", transaction.BrowseTransactionsByCategory).Methods("GET", "POST")
 	r.HandleFunc("/updatecategory/{id:[0-9]+}", category.UpdateCategory).Methods("GET", "POST")
 	r.HandleFunc("/deletecategory/{id:[0-9]+}", category.DeleteCategory).Methods("GET", "POST")
 	r.HandleFunc("/browsetransactions", transaction.BrowseTransactions).Methods("GET")
