@@ -45,7 +45,11 @@
                     {{range . }}
                     <tr>
                         <th>{{.ID}}</th>
-                        <th>{{.Name}}</th>
+                        <th>
+                            <form action="/browsebycategory/{{.ID}}">
+                                <input type="submit" value="{{.Name}}" />
+                            </form>
+                            </th>
                         <th>
                             <form action="/updatecategory/{{.ID}}">
                                 <input type="submit" value="Update" />
