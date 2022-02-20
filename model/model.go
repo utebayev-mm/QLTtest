@@ -7,8 +7,9 @@ type Transaction struct {
 	Date         string
 	Type         bool
 	Comments     string
-	CategoryID   string
+	CategoryID   int
 	CategoryName string
+	Categories   []Category
 }
 
 type Category struct {

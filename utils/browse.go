@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"qltTestApi/model"
+	"strconv"
 )
 
 func (r Repo) Browse() []model.Transaction {
@@ -18,6 +19,10 @@ func (r Repo) Browse() []model.Transaction {
 		var name, date, comments, category_id string
 		var transactionType bool
 		rows.Scan(&id, &name, &price, &date, &transactionType, &comments, &category_id)
+		category_id_int, err := strconv.Atoi(category_id)
+		if err != nil {
+			log.Println(err)
+		}
 		transaction := model.Transaction{
 			ID:         id,
 			Name:       name,
@@ -25,7 +30,7 @@ func (r Repo) Browse() []model.Transaction {
 			Date:       date,
 			Type:       transactionType,
 			Comments:   comments,
-			CategoryID: category_id,
+			CategoryID: category_id_int,
 		}
 		Transactions = append(Transactions, transaction)
 	}

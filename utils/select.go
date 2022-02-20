@@ -3,6 +3,7 @@ package utils
 import (
 	"log"
 	"qltTestApi/model"
+	"strconv"
 )
 
 func (r Repo) Select(IDToEdit int) model.Transaction {
@@ -13,6 +14,10 @@ func (r Repo) Select(IDToEdit int) model.Transaction {
 	if err != nil {
 		log.Println(err)
 	}
+	category_id_int, err := strconv.Atoi(category_id)
+	if err != nil {
+		log.Println(err)
+	}
 	Transaction := model.Transaction{
 		ID:         id,
 		Name:       name,
@@ -20,7 +25,7 @@ func (r Repo) Select(IDToEdit int) model.Transaction {
 		Date:       date,
 		Type:       transactionType,
 		Comments:   comments,
-		CategoryID: category_id,
+		CategoryID: category_id_int,
 	}
 	return Transaction
 }

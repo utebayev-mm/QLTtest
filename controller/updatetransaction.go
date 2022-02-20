@@ -9,6 +9,11 @@ import (
 	"time"
 )
 
+type TransactionDataUpdate struct {
+	Categories        []model.Category
+	TransactionToEdit model.Transaction
+}
+
 func (t *Transaction) UpdateTransaction(w http.ResponseWriter, r *http.Request) {
 	template, err := template.ParseFiles("./static/templates/updatetransaction.html")
 	if err != nil {
@@ -18,6 +23,7 @@ func (t *Transaction) UpdateTransaction(w http.ResponseWriter, r *http.Request) 
 	if err != nil {
 		log.Println(err)
 	}
+	var TransactionDataUpdate TransactionDataUpdate
 	TransactionToEdit := t.repo.Select(IDtoEdit)
 	if r.Method == http.MethodPost {
 		TransactionName := r.FormValue("Transactionname")
@@ -35,16 +41,26 @@ func (t *Transaction) UpdateTransaction(w http.ResponseWriter, r *http.Request) 
 		Transaction.Date = dt.Format("01-02-2006 15:04:05")
 		if TransactionType == "Income" {
 			Transaction.Type = true
+			if Transaction.Price < 0 {
+				Transaction.Price = Transaction.Price * -1
+			}
 		} else if TransactionType == "Expenditure" {
 			Transaction.Type = false
+			if Transaction.Price > 0 {
+				Transaction.Price = Transaction.Price * -1
+			}
 		}
-		Transaction.CategoryID = TransactionCategory
+		Category := t.repo.SelectCategorybyName(TransactionCategory)
+		Transaction.CategoryName = Category.Name
+		Transaction.CategoryID = Category.ID
 		Transaction.Comments = TransactionComment
 		Transaction.ID = IDtoEdit
 		t.repo.Update(Transaction)
 		http.Redirect(w, r, "/browsetransactions", http.StatusSeeOther)
 	}
-	errExec := template.Execute(w, TransactionToEdit)
+	TransactionDataUpdate.Categories = t.repo.BrowseCategories()
+	TransactionDataUpdate.TransactionToEdit = TransactionToEdit
+	errExec := template.Execute(w, TransactionDataUpdate)
 	if errExec != nil {
 		log.Println(errExec)
 	}
