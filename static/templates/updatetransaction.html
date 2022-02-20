@@ -21,56 +21,34 @@
         </div>
 
         <div class="container-fluid bg-3 text-center">
-            <h3>Update transaction</h3><br>
-            <div class="row">
-                <div class="col-sm-3">
-                    <form action="" method="POST">
-                        <div class="form-group row">
-                          <label  class="col-sm-2 col-form-label">Name</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-95" name="Transactionname" value="{{ .TransactionToEdit.Name }}" required>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label  class="col-sm-2 col-form-label">Value</label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-95" name="Transactionvalue" value="{{ .TransactionToEdit.Price }}" required>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label  class="col-sm-2 col-form-label">Type</label>
-                            <div class="col-sm-10">
-                                <select name="Transactiontype" id="type">
-                                    <option value="Income">Income</option>
-                                    <option value="Expenditure">Expenditure</option>
-                                  </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label  class="col-sm-2 col-form-label">Category</label>
-                            <div class="col-sm-10">
-                                <select name="Transactioncategory" id="type">
-                                    {{range .Categories}}
-                                    <option value="{{.Name}}">{{.Name}}</option>
-                                    {{end}}
-                                  </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label  class="col-sm-2 col-form-label">Comment</label>
-                            <div class="col-sm-10">
-                                <textarea type="text" style="height:100px;" class="form-95" name="Transactioncomment"  required>{{ .TransactionToEdit.Comments }}</textarea>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary">Update</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div><br><br>
+            <h3>Update transaction</h3>
+            <form action="" method="POST">
+            <label>Name</label>
+            <input type="text" class="form-95" name="Transactionname" value="{{ .TransactionToEdit.Name }}" required>
+            <br>
+            <label>Value</label>
+            <input type="number" class="form-95" name="Transactionvalue" value="{{ .TransactionToEdit.Price }}" required>
+            <br>
+            <label>Type</label>
+            <select name="Transactiontype" id="type">
+                <option value="Income">Income</option>
+                <option value="Expenditure">Expenditure</option>
+              </select>
+              <br>
+              <label>Category</label>
+              <select name="Transactioncategory" id="type">
+                {{range .Categories}}
+                <option value="{{.Name}}">{{.Name}}</option>
+                {{end}}
+              </select>
+              <br>
+              <label>Comment</label>
+              <textarea type="text" style="height:100px;" class="form-95" name="Transactioncomment" required>{{ .TransactionToEdit.Comments }}</textarea>
+              <br>  
+              <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
+<br><br>
         {{template "footer" .}}
 
     </body>
