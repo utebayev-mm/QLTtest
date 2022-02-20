@@ -15,7 +15,11 @@ type TransactionDataUpdate struct {
 }
 
 func (t *Transaction) UpdateTransaction(w http.ResponseWriter, r *http.Request) {
-	template, err := template.ParseFiles("./static/templates/updatetransaction.html")
+	templates := []string{
+		"./static/templates/updatetransaction.html",
+		"./static/templates/footer.html",
+	}
+	template, err := template.ParseFiles(templates...)
 	if err != nil {
 		log.Println(err)
 	}

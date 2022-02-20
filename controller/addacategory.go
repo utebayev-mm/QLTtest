@@ -17,7 +17,11 @@ func NewCategory(repo *utils.Repo) *Category {
 }
 
 func (t *Category) AddACategory(w http.ResponseWriter, r *http.Request) {
-	template, err := template.ParseFiles("./static/templates/addacategory.html")
+	templates := []string{
+		"./static/templates/addacategory.html",
+		"./static/templates/footer.html",
+	}
+	template, err := template.ParseFiles(templates...)
 	if err != nil {
 		log.Println(err)
 	}

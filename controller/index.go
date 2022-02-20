@@ -7,7 +7,11 @@ import (
 )
 
 func MainPage(w http.ResponseWriter, r *http.Request) {
-	template, err := template.ParseFiles("./static/templates/index.html")
+	templates := []string{
+		"./static/templates/index.html",
+		"./static/templates/footer.html",
+	}
+	template, err := template.ParseFiles(templates...)
 	if err != nil {
 		log.Println(err)
 	}

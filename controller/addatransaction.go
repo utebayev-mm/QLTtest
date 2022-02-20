@@ -23,7 +23,11 @@ func NewTransaction(repo *utils.Repo) *Transaction {
 }
 
 func (t *Transaction) AddATransaction(w http.ResponseWriter, r *http.Request) {
-	template, err := template.ParseFiles("./static/templates/addatransaction.html")
+	templates := []string{
+		"./static/templates/addatransaction.html",
+		"./static/templates/footer.html",
+	}
+	template, err := template.ParseFiles(templates...)
 	if err != nil {
 		log.Println(err)
 	}

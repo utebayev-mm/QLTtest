@@ -9,7 +9,11 @@ import (
 )
 
 func (t *Category) UpdateCategory(w http.ResponseWriter, r *http.Request) {
-	template, err := template.ParseFiles("./static/templates/updatecategory.html")
+	templates := []string{
+		"./static/templates/updatecategory.html",
+		"./static/templates/footer.html",
+	}
+	template, err := template.ParseFiles(templates...)
 	if err != nil {
 		log.Println(err)
 	}

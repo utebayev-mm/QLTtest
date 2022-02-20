@@ -8,7 +8,11 @@ import (
 )
 
 func (t *Category) BrowseCategories(w http.ResponseWriter, r *http.Request) {
-	template, err := template.ParseFiles("./static/templates/browsecategories.html")
+	templates := []string{
+		"./static/templates/browsecategories.html",
+		"./static/templates/footer.html",
+	}
+	template, err := template.ParseFiles(templates...)
 	if err != nil {
 		log.Println(err)
 	}

@@ -8,7 +8,11 @@ import (
 )
 
 func (t *Transaction) DeleteTransactionByID(w http.ResponseWriter, r *http.Request) {
-	template, err := template.ParseFiles("./static/templates/deletetransaction.html")
+	templates := []string{
+		"./static/templates/deletetransaction.html",
+		"./static/templates/footer.html",
+	}
+	template, err := template.ParseFiles(templates...)
 	if err != nil {
 		log.Println(err)
 	}
