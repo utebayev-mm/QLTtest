@@ -14,7 +14,7 @@ func InitDb() *sql.DB {
 	}
 	db.SQLDB.Ping()
 
-	userQuery, err := os.ReadFile("model/sql/payments.sql")
+	userQuery, err := os.ReadFile("model/sql/transactions.sql")
 	if err != nil {
 		log.Println(err)
 	}
