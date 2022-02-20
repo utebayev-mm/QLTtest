@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS transactions (
 		name TEXT,
 		price INTEGER,
 		date TEXT,
-		type TEXT,
+		type BOOLEAN,
 		comments TEXT,
 		category_id INTEGER
 	  );

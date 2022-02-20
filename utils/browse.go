@@ -15,7 +15,8 @@ func (r Repo) Browse() []model.Transaction {
 	var Transactions []model.Transaction
 	for rows.Next() {
 		var id, price int
-		var name, date, transactionType, comments, category_id string
+		var name, date, comments, category_id string
+		var transactionType bool
 		rows.Scan(&id, &name, &price, &date, &transactionType, &comments, &category_id)
 		transaction := model.Transaction{
 			ID:         id,

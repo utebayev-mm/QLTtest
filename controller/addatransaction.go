@@ -37,10 +37,17 @@ func (t *Transaction) AddATransaction(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(TransactionComment)
 		var Transaction model.Transaction
 		Transaction.Name = TransactionName
-		Transaction.Price, _ = strconv.Atoi(TransactionValue)
+		Transaction.Price, err = strconv.Atoi(TransactionValue)
+		if err != nil {
+			log.Println(err)
+		}
 		dt := time.Now()
 		Transaction.Date = dt.Format("01-02-2006 15:04:05")
-		Transaction.Type = TransactionType
+		if TransactionType == "Income" {
+			Transaction.Type = true
+		} else if TransactionType == "Expenditure" {
+			Transaction.Type = false
+		}
 		Transaction.CategoryID = "1"
 		Transaction.Comments = TransactionComment
 		t.repo.Create(Transaction)

@@ -7,7 +7,8 @@ import (
 
 func (r Repo) Select(IDToEdit int) model.Transaction {
 	var id, price int
-	var name, date, transactionType, comments, category_id string
+	var name, date, comments, category_id string
+	var transactionType bool
 	err := r.db.QueryRow("SELECT id, name, price, date, type, comments ,category_id FROM transactions WHERE id = ?", IDToEdit).Scan(&id, &name, &price, &date, &transactionType, &comments, &category_id)
 	if err != nil {
 		log.Println(err)

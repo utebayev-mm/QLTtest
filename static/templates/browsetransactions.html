@@ -55,7 +55,7 @@
                         <th>{{.Name}}</th>
                         <th>{{.Price}}</th>
                         <th>{{.Date}}</th>
-                        <th>{{.Type}}</th>
+                        <th>{{if eq .Type true}}Income{{else if eq .Type false}}Expenditure{{end}}</th>
                         <th>{{.Comments}}</th>
                         <th>{{.CategoryID}}</th>
                         <th>
