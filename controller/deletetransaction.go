@@ -1,13 +1,14 @@
 package controller
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"strconv"
 	"text/template"
 )
 
-func (t *Transaction) DeleteTransaction(w http.ResponseWriter, r *http.Request) {
+func (t *Transaction) DeleteTransactionByID(w http.ResponseWriter, r *http.Request) {
 	template, err := template.ParseFiles("./static/templates/deletetransaction.html")
 	if err != nil {
 		log.Println(err)
@@ -26,4 +27,14 @@ func (t *Transaction) DeleteTransaction(w http.ResponseWriter, r *http.Request) 
 	if errExec != nil {
 		log.Println(errExec)
 	}
+}
+
+func (t *Transaction) DeleteTransaction(w http.ResponseWriter, r *http.Request) {
+	IDtoDelete, err := strconv.Atoi(r.URL.Path[19:])
+	fmt.Println(IDtoDelete)
+	if err != nil {
+		log.Println(err)
+	}
+	t.repo.Delete(IDtoDelete)
+	http.Redirect(w, r, "/browsetransactions", http.StatusSeeOther)
 }
