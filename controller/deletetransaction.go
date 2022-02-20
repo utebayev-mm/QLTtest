@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -31,7 +30,6 @@ func (t *Transaction) DeleteTransactionByID(w http.ResponseWriter, r *http.Reque
 
 func (t *Transaction) DeleteTransaction(w http.ResponseWriter, r *http.Request) {
 	IDtoDelete, err := strconv.Atoi(r.URL.Path[19:])
-	fmt.Println(IDtoDelete)
 	if err != nil {
 		log.Println(err)
 	}

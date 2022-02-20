@@ -1,9 +1,9 @@
 package utils
 
 import (
-	"fmt"
 	"log"
 	"qltTestApi/model"
+	"sort"
 	"strconv"
 )
 
@@ -16,24 +16,27 @@ func (r Repo) Browse() []model.Transaction {
 	var Transactions []model.Transaction
 	for rows.Next() {
 		var id, price int
-		var name, date, comments, category_id string
+		var name, date, comments, category_id, categoryName string
 		var transactionType bool
 		rows.Scan(&id, &name, &price, &date, &transactionType, &comments, &category_id)
 		category_id_int, err := strconv.Atoi(category_id)
 		if err != nil {
 			log.Println(err)
 		}
+		categoryName = r.SelectCategory(category_id_int).Name
 		transaction := model.Transaction{
-			ID:         id,
-			Name:       name,
-			Price:      price,
-			Date:       date,
-			Type:       transactionType,
-			Comments:   comments,
-			CategoryID: category_id_int,
+			ID:           id,
+			Name:         name,
+			Price:        price,
+			Date:         date,
+			Type:         transactionType,
+			Comments:     comments,
+			CategoryID:   category_id_int,
+			CategoryName: categoryName,
 		}
 		Transactions = append(Transactions, transaction)
+		sort.SliceStable(Transactions, func(i, j int) bool { return Transactions[i].ID > Transactions[j].ID })
+
 	}
-	fmt.Println(Transactions)
 	return Transactions
 }

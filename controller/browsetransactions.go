@@ -7,6 +7,11 @@ import (
 	"text/template"
 )
 
+type TransactionBrowseData struct {
+	Categories   []model.Category
+	Transactions []model.Transaction
+}
+
 func (t *Transaction) BrowseTransactions(w http.ResponseWriter, r *http.Request) {
 	template, err := template.ParseFiles("./static/templates/browsetransactions.html")
 	if err != nil {
@@ -15,8 +20,12 @@ func (t *Transaction) BrowseTransactions(w http.ResponseWriter, r *http.Request)
 	var Transactions []model.Transaction
 
 	Transactions = t.repo.Browse()
-
-	errExec := template.Execute(w, Transactions)
+	var BrowseData TransactionBrowseData
+	var Categories []model.Category
+	Categories = t.repo.BrowseCategories()
+	BrowseData.Transactions = Transactions
+	BrowseData.Categories = Categories
+	errExec := template.Execute(w, BrowseData)
 	if errExec != nil {
 		log.Println(errExec)
 	}

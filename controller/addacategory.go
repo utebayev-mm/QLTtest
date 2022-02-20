@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"qltTestApi/model"
@@ -24,7 +23,6 @@ func (t *Category) AddACategory(w http.ResponseWriter, r *http.Request) {
 	}
 	if r.Method == http.MethodPost {
 		CategoryName := r.FormValue("Categoryname")
-		fmt.Println(CategoryName)
 		var Category model.Category
 		Category.Name = CategoryName
 		t.repo.CreateCategory(Category)

@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"qltTestApi/model"
@@ -35,11 +34,6 @@ func (t *Transaction) AddATransaction(w http.ResponseWriter, r *http.Request) {
 		TransactionType := r.FormValue("Transactiontype")
 		TransactionCategory := r.FormValue("Transactioncategory")
 		TransactionComment := r.FormValue("Transactioncomment")
-		fmt.Println(TransactionName)
-		fmt.Println(TransactionValue)
-		fmt.Println(TransactionType)
-		fmt.Println(TransactionCategory)
-		fmt.Println(TransactionComment)
 		var Transaction model.Transaction
 		Transaction.Name = TransactionName
 		Transaction.Price, err = strconv.Atoi(TransactionValue)
