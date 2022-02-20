@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -31,7 +30,6 @@ func (t *Category) DeleteCategoryByID(w http.ResponseWriter, r *http.Request) {
 
 func (t *Category) DeleteCategory(w http.ResponseWriter, r *http.Request) {
 	IDtoDelete, err := strconv.Atoi(r.URL.Path[16:])
-	fmt.Println(IDtoDelete)
 	if err != nil {
 		log.Println(err)
 	}
