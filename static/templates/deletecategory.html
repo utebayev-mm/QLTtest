@@ -19,26 +19,13 @@
                 <a href="/"> <h1>QLT - Financial Literacy</h1></a>
             </div>
         </div>
-
         <div class="container-fluid bg-3 text-center">
             <h3>Delete a category</h3><br>
-            <div class="row">
-                <div class="col-sm-3">
                     <form action="" method="POST">
-                        <div class="form-group row">
-                          <label  class="col-sm-2 col-form-label">ID</label>
-                            <div class="col-sm-10">
+                          <label>ID</label>
                                 <input type="text" class="form-95" name="CategoryIDToDelete" required>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary">Delete</button>
-                            </div>
-                        </div>
+                    <button type="submit" class="btn btn-primary">Delete</button>
                     </form>
-                </div>
-            </div>
         </div><br><br>
         {{template "footer" .}}
 

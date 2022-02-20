@@ -28,7 +28,9 @@ func (t *Transaction) BrowseTransactionsByCategory(w http.ResponseWriter, r *htt
 	Categories = t.repo.BrowseCategories()
 	BrowseData.Transactions = Transactions
 	BrowseData.Categories = Categories
-	BrowseData.Info = Transactions[0].CategoryName
+	if len(Transactions) > 0 {
+		BrowseData.Info = Transactions[0].CategoryName
+	}
 	errExec := template.Execute(w, BrowseData)
 	if errExec != nil {
 		log.Println(errExec)
